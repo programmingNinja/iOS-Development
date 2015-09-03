@@ -23,6 +23,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         tipAmountLabel.text = "$0.00"
         totalAmountLabel.text = "$0.00"
+        self.billAmountText.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
