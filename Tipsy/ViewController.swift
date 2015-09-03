@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
+    @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var billAmountText: UITextField!
     @IBOutlet weak var billLabel: UILabel!
     @IBOutlet weak var tipLabel: UILabel!
@@ -17,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var tipPercentagesSegment: UISegmentedControl!
+    var DestViewController : SettingsViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,12 @@ class ViewController: UIViewController {
         tipAmountLabel.text = "$0.00"
         totalAmountLabel.text = "$0.00"
         self.billAmountText.becomeFirstResponder()
+        /*if DestViewController.defSwitch.on {
+            tipPercentagesSegment.setEnabled(false, forSegmentAtIndex: 3)
+        } else {
+            tipPercentagesSegment.setEnabled(true, forSegmentAtIndex: 3)
+
+        }*/
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +59,9 @@ class ViewController: UIViewController {
     
     @IBAction func onChange(sender: AnyObject) {
         var tipPercentage = [0.15 , 0.2 , 0.25]
+        if tipPercentagesSegment.selectedSegmentIndex == 3 {
+            
+        }
         var rate = tipPercentage[tipPercentagesSegment.selectedSegmentIndex]
         var amount = (billAmountText.text as NSString).doubleValue
         var tip = rate * amount
@@ -59,5 +71,37 @@ class ViewController: UIViewController {
         totalAmountLabel.text = String(format: "$%.2f", total)
 
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using 
+       DestViewController = segue.destinationViewController as! SettingsViewController
+        /*var amount = (billAmountText.text as NSString).doubleValue
+        var tip = Double(DestViewController.tipSlider.value)*amount
+        var total = tip+amount
+        
+        tipAmountLabel.text = String(format: "$%.2f", tip)
+        totalAmountLabel.text = String(format: "$%.2f", total)
+        */
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        println("view will appear")
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        println("view did appear")
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        println("view will disappear")
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        println("view did disappear")
+    }
+
 }
 
