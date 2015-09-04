@@ -27,12 +27,8 @@ class ViewController: UIViewController {
         tipAmountLabel.text = "$0.00"
         totalAmountLabel.text = "$0.00"
         self.billAmountText.becomeFirstResponder()
-        /*if DestViewController.defSwitch.on {
-            tipPercentagesSegment.setEnabled(false, forSegmentAtIndex: 3)
-        } else {
-            tipPercentagesSegment.setEnabled(true, forSegmentAtIndex: 3)
-
-        }*/
+        println("Did Load")
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,10 +54,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onChange(sender: AnyObject) {
-        var tipPercentage = [0.15 , 0.2 , 0.25]
-        if tipPercentagesSegment.selectedSegmentIndex == 3 {
-            
-        }
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var defTipPerc = defaults.integerForKey("defaultTipPerc")
+        var defPerc:Double=(Double(defTipPerc)/100)
+        var tipPercentage = [0.15 , 0.2 , 0.25, defPerc]
         var rate = tipPercentage[tipPercentagesSegment.selectedSegmentIndex]
         var amount = (billAmountText.text as NSString).doubleValue
         var tip = rate * amount
@@ -74,18 +70,14 @@ class ViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using 
        DestViewController = segue.destinationViewController as! SettingsViewController
-        /*var amount = (billAmountText.text as NSString).doubleValue
-        var tip = Double(DestViewController.tipSlider.value)*amount
-        var total = tip+amount
         
-        tipAmountLabel.text = String(format: "$%.2f", tip)
-        totalAmountLabel.text = String(format: "$%.2f", total)
-        */
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         println("view will appear")
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var defTipPerc = defaults.integerForKey("defaultTipPerc")
     }
     
     override func viewDidAppear(animated: Bool) {
