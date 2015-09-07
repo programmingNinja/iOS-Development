@@ -25,6 +25,8 @@ class SettingsViewController: UIViewController {
         var sliderValue = Int(tipSlider.value)
         tipLabel.text = "\(sliderValue)%"
         // Do any additional setup after loading the view.
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -38,6 +40,18 @@ class SettingsViewController: UIViewController {
         tipLabel.text = "\(sliderValue)%"
         defaults.setInteger(sliderValue, forKey: "defaultTipPerc")
         defaults.synchronize()
+        let backColor = CGFloat(sender.value)
+        if (tipSlider.value >= 0 && tipSlider.value <= 15) {
+            self.view.backgroundColor = UIColor(red: 255.0/255, green:(backColor*17)/255, blue:0, alpha:0.6)
+        }
+        if tipSlider.value > 15 && tipSlider.value <= 30 {
+            self.view.backgroundColor = UIColor(red: (255.0-((backColor-15.0)*17.0))/255.0, green:255.0/255, blue:0, alpha:0.6)
+            
+        } else if tipSlider.value > 30 && tipSlider.value <= 70 {
+            self.view.backgroundColor = UIColor(red: (((backColor/4.67)*17.0)/255), green:(255.0/255), blue:0, alpha:0.6)
+        } else {
+            self.view.backgroundColor = UIColor(red: (255.0/255.0), green: (255.0-((backColor+155.0)/255.0)), blue: 0, alpha:0.6)
+        }
     }
     /*
     // MARK: - Navigation
