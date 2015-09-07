@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6DC4770A-41D1-4468-813E-4721E58793D6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Tipsy</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>DF688DC990B02CB66FDE17EE82499FCE68ED8A93</key>
+		<string>https://gecgithub01.walmart.com/Rshah4/Tipsy.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Tipsy.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>DF688DC990B02CB66FDE17EE82499FCE68ED8A93</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://gecgithub01.walmart.com/Rshah4/Tipsy.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>DF688DC990B02CB66FDE17EE82499FCE68ED8A93</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DF688DC990B02CB66FDE17EE82499FCE68ED8A93</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Tipsy</string>
+		</dict>
+	</array>
+</dict>
+</plist>
