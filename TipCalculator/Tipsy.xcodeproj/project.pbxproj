@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		030500C51B98210900E2F3DC /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030500C41B98210900E2F3DC /* SettingsViewController.swift */; };
-		03DCF3681B98ED410015097B /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 03DCF3671B98ED410015097B /* ReadMe.rtf */; };
 		03DFD4341B966F9E0006F6CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFD4331B966F9E0006F6CB /* AppDelegate.swift */; };
 		03DFD4361B966F9E0006F6CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DFD4351B966F9E0006F6CB /* ViewController.swift */; };
 		03DFD4391B966F9E0006F6CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03DFD4371B966F9E0006F6CB /* Main.storyboard */; };
@@ -29,7 +28,6 @@
 
 /* Begin PBXFileReference section */
 		030500C41B98210900E2F3DC /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		03DCF3671B98ED410015097B /* ReadMe.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = "<group>"; };
 		03DFD42E1B966F9E0006F6CB /* Tipsy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tipsy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		03DFD4321B966F9E0006F6CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03DFD4331B966F9E0006F6CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 				03DFD43A1B966F9E0006F6CB /* Images.xcassets */,
 				03DFD43C1B966F9E0006F6CB /* LaunchScreen.xib */,
 				03DFD4311B966F9E0006F6CB /* Supporting Files */,
-				03DCF3671B98ED410015097B /* ReadMe.rtf */,
 			);
 			path = Tipsy;
 			sourceTree = "<group>";
@@ -200,7 +197,6 @@
 			files = (
 				03DFD4391B966F9E0006F6CB /* Main.storyboard in Resources */,
 				03DFD43E1B966F9E0006F6CB /* LaunchScreen.xib in Resources */,
-				03DCF3681B98ED410015097B /* ReadMe.rtf in Resources */,
 				03DFD43B1B966F9E0006F6CB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

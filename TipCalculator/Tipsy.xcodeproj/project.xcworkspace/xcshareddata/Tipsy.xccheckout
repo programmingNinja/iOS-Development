@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>DF688DC990B02CB66FDE17EE82499FCE68ED8A93</key>
-		<string>https://gecgithub01.walmart.com/Rshah4/Tipsy.git</string>
+		<string>github.com:programmingNinja/iOS-Development.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Tipsy.xcodeproj</string>
+	<string>TipCalculator/Tipsy.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>DF688DC990B02CB66FDE17EE82499FCE68ED8A93</key>
-		<string>../..</string>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://gecgithub01.walmart.com/Rshah4/Tipsy.git</string>
+	<string>github.com:programmingNinja/iOS-Development.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>DF688DC990B02CB66FDE17EE82499FCE68ED8A93</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Tipsy</string>
+			<string>iOS-Development</string>
 		</dict>
 	</array>
 </dict>
