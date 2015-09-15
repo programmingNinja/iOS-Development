@@ -16,6 +16,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     var searchActive : Bool = false
     var movies: [NSDictionary]?
     var filtered: [NSDictionary]?
+    //@IBOutlet weak var movieDVDSegment: UISegmentedControl!
     
     override func viewDidLoad() {
         
@@ -23,8 +24,8 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         refreshControl = UIRefreshControl()
         self.refreshControl?.addTarget(self, action: "handleRefresh", forControlEvents: UIControlEvents.ValueChanged)
         self.movieTableView?.addSubview(refreshControl)
-        
-        reloadTableView()
+        //movieTableView.
+        reloadMoviesTableView()
         movieTableView.dataSource = self
         movieTableView.delegate = self
         moviesSearchBar.delegate = self
@@ -64,20 +65,33 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         }*/
         
         cell.movieCoverImageView.setImageWithURL(url!)
+        let request = NSURLRequest(URL: url!)
+        cell.movieCoverImageView.setImageWithURLRequest(request, placeholderImage: nil, success: { (request, response, image) in
+            cell.movieCoverImageView.alpha = 0.0
+            cell.movieCoverImageView.image = image
+            UIView.animateWithDuration(1.0, animations: {
+                cell.movieCoverImageView.alpha = 1.0
+            })
+            }, failure: nil)
         return cell
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
+        // Get the new view controller using
         // Pass the selected object to the new view controller.
+        let cell = sender as! UITableViewCell
+        let indexPath = movieTableView.indexPathForCell(cell)!
+        let movie = movies![indexPath.row]
+        
+        let movieDescrViewController = segue.destinationViewController as! MovieDescriptionViewController
+        movieDescrViewController.movie = movie
     }
-    */
-    
+
     func showLoader() {
         
         var config : SwiftLoader.Config = SwiftLoader.Config()
@@ -104,8 +118,21 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         SwiftLoader.hide()
     }
     
-    func reloadTableView() {
+    func reloadMoviesTableView() {
         var url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")!
+        let request = NSURLRequest(URL: url)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
+            if let json = json {
+                self.movies = json["movies"] as? [NSDictionary]
+                self.movieTableView.reloadData()
+                
+            }
+        }
+    }
+    
+    func reloadDVDTableView() {
+        var url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/e41513a57049e21bc6cf/raw/b490e79be2d21818f28614ec933d5d8f467f0a66/gistfile1.json")!
         let request = NSURLRequest(URL: url)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
@@ -118,7 +145,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     func handleRefresh() {
         println("Refreshing...")
-        reloadTableView()
+        reloadMoviesTableView()
         refreshControl.endRefreshing()
         println("Refreshed....")
     }
@@ -138,6 +165,15 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         searchActive = false;
     }
     
+    
+    /*@IBAction func onChange(sender: AnyObject) {
+        if(movieDVDSegment.selectedSegmentIndex == 0) {
+            reloadMoviesTableView()
+        }
+        else {
+            reloadDVDTableView()
+        }
+    }*/
     /*func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
         filtered = movies!.filter({ (text) -> Bool in
