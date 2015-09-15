@@ -8,6 +8,8 @@
 
 import UIKit
 import SwiftLoader
+//import TSMessage
+
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     var refreshControl: UIRefreshControl!
@@ -122,12 +124,22 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         var url = NSURL(string: "https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json")!
         let request = NSURLRequest(URL: url)
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary
-            if let json = json {
+            
+            
+            TSMessage.dismissActiveNotification()
+            
+            var errorValue: NSError?
+            if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? NSDictionary {
                 self.movies = json["movies"] as? [NSDictionary]
                 self.movieTableView.reloadData()
-                
+            } else {
+                TSMessage.showNotificationWithTitle(
+                    "Network error",
+                    subtitle: "Couldn't connect to the server. Check your network connection.",
+                    type: .Error
+                )
             }
+        
         }
     }
     
