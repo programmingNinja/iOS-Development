@@ -8,9 +8,15 @@
 
 import UIKit
 import SwiftLoader
-//import TSMessage
+import TSMessages
+
+enum MoviesEndpoint {
+    case Theater
+    case DVD
+}
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+    var endpoint:MoviesEndpoint = .Theater
 
     var refreshControl: UIRefreshControl!
     @IBOutlet weak var movieTableView: UITableView!
@@ -27,7 +33,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         self.refreshControl?.addTarget(self, action: "handleRefresh", forControlEvents: UIControlEvents.ValueChanged)
         self.movieTableView?.addSubview(refreshControl)
         //movieTableView.
-        reloadMoviesTableView()
+        handleRefresh()
         movieTableView.dataSource = self
         movieTableView.delegate = self
         moviesSearchBar.delegate = self
@@ -46,9 +52,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
             return 0
         }
     }
-    
-    
-    
+        
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = movieTableView.dequeueReusableCellWithIdentifier("MovieCell", forIndexPath: indexPath) as! MovieCell
@@ -133,9 +137,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
                 self.movies = json["movies"] as? [NSDictionary]
                 self.movieTableView.reloadData()
             } else {
-                TSMessage.showNotificationWithTitle(
-                    "Network error",
-                    subtitle: "Couldn't connect to the server. Check your network connection.",
+                TSMessage.showNotificationWithTitle("Network error",subtitle: "Couldn't connect to the server. Check your network connection.",
                     type: .Error
                 )
             }
@@ -157,7 +159,13 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     }
     func handleRefresh() {
         println("Refreshing...")
-        reloadMoviesTableView()
+        switch (endpoint) {
+        case .Theater:
+            reloadMoviesTableView()
+        case .DVD:
+            reloadDVDTableView()
+        }
+        
         refreshControl.endRefreshing()
         println("Refreshed....")
     }
@@ -201,4 +209,14 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         self.movieTableView.reloadData()
     }*/
 
+}
+
+class MoviesTabBarController:UITabBarController {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let viewController = (self.viewControllers![1] as! UINavigationController)
+        let controller = viewController.viewControllers!.first! as! MoviesViewController
+        controller.endpoint = .DVD
+        
+    }
 }
